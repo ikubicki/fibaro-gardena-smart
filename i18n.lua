@@ -33,6 +33,8 @@ phrases = {
         ['updates-count'] = '%s ... Zostanie zastosowanych %d aktualizacji',
         ['no-setup'] = 'W celu uruchomienia integracji proszę o określenie zmiennych URL, Username oraz Password',
         ['used-url'] = 'Adres proxy Gardena Smart: %s',
+        ['error-updates'] = '[%d] Nie można pobrać aktualizacji: %s',
+        ['error-search'] = '[%d] Nie można wyszukać urządzeń: %s',
     },
     en = {
         ['pull-devices'] = 'Fetch devices',
@@ -50,6 +52,8 @@ phrases = {
         ['updates-count'] = '%s ... %d updates will be applied',
         ['no-setup'] = 'To start the integration, please specify URL, Username, and Password variables',
         ['used-url'] = 'Gardena Smart proxy address: %s',
+        ['error-updates'] = '[%d] Failed to fetch updates: %s',
+        ['error-search'] = '[%d] Failed to search for devices: %s',
     },
     de = {
         ['pull-devices'] = 'Geräte abrufen',
@@ -67,5 +71,7 @@ phrases = {
         ['updates-count'] = '%s ... %d Updates werden angewendet',
         ['no-setup'] = 'Um die Integration zu starten, bitte die Variablen URL, Benutzername und Passwort angeben',
         ['used-url'] = 'Gardena-Smart-Proxy-Adresse: %s',
+        ['error-updates'] = '[%d] Updates konnten nicht abgerufen werden: %s',
+        ['error-search'] = '[%d] Geräte konnten nicht gesucht werden: %s',
     }
 }

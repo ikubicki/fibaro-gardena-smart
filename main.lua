@@ -122,6 +122,7 @@ function QuickApp:pullDevicesUpdates()
     end
     -- QuickApp:debug('Pulling updates')
     local fallback = function(response)
+        QuickApp:error(string.format(self.i18n:get('error-updates'), response.status, response.data))
         self:updateView("status", "text", string.format(self.i18n:get('error-updates'), response.status, response.data))
     end
     local callback = function(data)
