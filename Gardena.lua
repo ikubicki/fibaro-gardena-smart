@@ -238,6 +238,48 @@ function Gardena:updateWebhook(locationId, callback, fallback)
             }
         }
     }
-    QuickApp:debug(json.encode(data))
     self.http:post('/proxy/webhook', data, success, fail, headers)
+end
+
+function Gardena:sendCommand(command, callback, fallback)
+    local data = self:getCommandPayload(command)
+    local headers = {
+        Authorization = "Basic " .. self.basicAuthorization,
+        ['User-Agent'] = 'fibaro quick app',
+        ['Content-Type'] = 'application/json',
+    }
+    self.http:put('/proxy/command/' .. command.device, data, callback, fail, headers)
+end
+
+function Gardena:getCommandPayload(command)
+    local generators = {
+        VALVE_CONTROL = function(command)
+            local handlers = {
+                START_SECONDS_TO_OVERRIDE = function(command)
+                    return {
+                        id = "fibaroQaValve",
+                        type = command.type,
+                        attributes = {
+                            command = command.command,
+                            seconds = command.seconds,
+                        },
+                    }
+                end,
+                STOP_UNTIL_NEXT_TASK = function(command)
+                    return {
+                        id = 'fibaroQaValve',
+                        type = command.type,
+                        attributes = {
+                            command = command.command,
+                            seconds = 0,
+                        }
+                    }
+                end,
+            }
+            return handlers[command.command](command)
+        end,
+    }
+    return {
+        data = generators[command.type](command)
+    }
 end

@@ -33,3 +33,8 @@ This should allow you to run quick application in your Fibaro Home Center device
 ## Support
 
 Due to horrible user experience with Fibaro Marketplace, for better communication I recommend to contact with me through GitHub or create an issue in the repository.
+
+## Changelog
+
+ * v.1.1.0
+   * Valve controls

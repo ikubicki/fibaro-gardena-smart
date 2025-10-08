@@ -1,10 +1,11 @@
 --[[
 Gardena Smart Proxy integration
 @author ikubicki
-@version 1.0.0
+@version 1.1.0
 ]]
 
 function QuickApp:onInit()
+    QuickApp:trace("Gardena Smart Proxy integration, v.1.1.0")
     self.config = Config:new(self)
     self.client = Gardena:new(self.config)
     QuickApp.i18n = i18n:new(api.get("/settings/info").defaultLanguage)
