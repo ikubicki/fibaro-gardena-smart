@@ -36,5 +36,8 @@ Due to horrible user experience with Fibaro Marketplace, for better communicatio
 
 ## Changelog
 
+ * v.1.1.1
+   * Error handling improvements
+
  * v.1.1.0
    * Valve controls

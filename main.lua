@@ -1,11 +1,11 @@
 --[[
 Gardena Smart Proxy integration
 @author ikubicki
-@version 1.1.0
+@version 1.1.1
 ]]
 
 function QuickApp:onInit()
-    QuickApp:trace("Gardena Smart Proxy integration, v.1.1.0")
+    QuickApp:trace("Gardena Smart Proxy integration, v.1.1.1")
     self.config = Config:new(self)
     self.client = Gardena:new(self.config)
     QuickApp.i18n = i18n:new(api.get("/settings/info").defaultLanguage)
@@ -37,7 +37,7 @@ function QuickApp:updateUI()
             self:updateView("selectLocation", "selectedItem", self.config:getLocationId())
         end
         local fallback = function(response)
-            self:updateView("status", "text", string.format(self.i18n:get('error-locations'), response.status, response.data))
+            self:updateView("status", "text", string.format(self.i18n:get('error-locations'), response.status or 0, response.data or response or 'Unknown error'))
         end
         self.client:getLocations(callback, fallback)
     end
@@ -83,7 +83,7 @@ function QuickApp:onPullDevices(event)
     end
     local fallback = function(response)
         self:updateView("button_1", "text", self.i18n:get('pull-devices'))
-        self:updateView("status", "text", string.format(self.i18n:get('error-devices'), response.status, response.data))
+        self:updateView("status", "text", string.format(self.i18n:get('error-devices'), response.status or 0, response.data or response or 'Unknown error'))
     end
     self.client:getDevices(self.config:getLocationId(), callback, fallback)
 end
@@ -108,7 +108,7 @@ function QuickApp:updateWebhook()
         return
     end
     local fallback = function(response)
-        self:updateView("status", "text", string.format(self.i18n:get('error-webhook'), response.status, response.data))
+        self:updateView("status", "text", string.format(self.i18n:get('error-webhook'), response.status or 0, response.data or response or 'Unknown error'))
     end
     local callback = function(data)
         QuickApp:debug(json.encode(data))
@@ -122,7 +122,7 @@ function QuickApp:pullDevicesUpdates()
     end
     -- QuickApp:debug('Pulling updates')
     local fallback = function(response)
-        QuickApp:error(string.format(self.i18n:get('error-updates'), response.status, response.data))
+        QuickApp:error(string.format(self.i18n:get('error-updates'), response.status or 0, response.data or response or 'Unknown error'))
         self:updateView("status", "text", string.format(self.i18n:get('error-updates'), response.status, response.data))
     end
     local callback = function(data)
