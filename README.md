@@ -36,6 +36,9 @@ Due to horrible user experience with Fibaro Marketplace, for better communicatio
 
 ## Changelog
 
+ * v.1.1.2
+   * Error handling improvements
+
  * v.1.1.1
    * Error handling improvements
 
