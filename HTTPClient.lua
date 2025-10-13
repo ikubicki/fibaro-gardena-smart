@@ -25,9 +25,6 @@ function HTTPClient:post(url, data, success, error, headers)
     if not headers then
         headers = {}
     end
-    QuickApp:debug(self:url(url))
-    QuickApp:debug(json.encode(data))
-    QuickApp:debug(json.encode(headers))
     client:request(self:url(url), self:requestOptions(success, error, 'POST', data, headers)) 
 end
 

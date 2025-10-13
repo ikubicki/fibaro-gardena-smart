@@ -23,9 +23,8 @@ function Gardena:getLocations(callback, fallback)
         }
     end
     local fail = function(response)
-        QuickApp:error('Unable to pull locations')
-        QuickApp:debug(response.status)
-        QuickApp:debug(response.data)
+        QuickApp:error('Unable to pull locations [' .. (response.status or 0) .. ']')
+        QuickApp:debug(response.data or response or 'Unknown error')
         if fallback ~= nil then
             fallback(response)
         end
@@ -152,7 +151,7 @@ end
 
 function Gardena:getUpdates(lastUpdateAt, callback, fallback)
     local fail = function(response)
-        QuickApp:error('Unable to pull devices')
+        QuickApp:error('Unable to pull updates')
         if fallback ~= nil then
             fallback(response)
         end

@@ -36,6 +36,11 @@ Due to horrible user experience with Fibaro Marketplace, for better communicatio
 
 ## Changelog
 
+ * v.1.2.0
+   * Uncommented webhook update calls
+   * Restarts the app after multiple (100) errors
+   * Ability to manually refresh devices
+
  * v.1.1.2
    * Error handling improvements
 
